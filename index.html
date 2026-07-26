@@ -29,36 +29,6 @@
       line-height: 1.5;
       overflow-x: hidden;
       height: auto !important;
-      padding-bottom: 0 !important;
-      margin-bottom: 0 !important;
-    }
-
-    /* --- AUDIO TOGGLE BUTTON (SMALLER & AT BOTTOM) --- */
-    .audio-toggle-btn {
-      position: fixed;
-      bottom: 1.2rem;
-      right: 1.2rem;
-      z-index: 999;
-      background: rgba(22, 28, 38, 0.85);
-      border: 1px solid var(--accent-copper);
-      color: var(--text-bright);
-      padding: 0.4rem 0.85rem;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      transition: all 0.3s ease;
-    }
-
-    .audio-toggle-btn:hover {
-      background: var(--accent-copper);
-      color: #fff;
-      transform: scale(1.05);
     }
 
     /* --- HERO SECTION --- */
@@ -95,7 +65,7 @@
     }
 
     .logo-container:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
     .hero-subtitle {
@@ -103,6 +73,43 @@
       color: var(--text-muted);
       max-width: 650px;
       margin-top: 0.5rem;
+    }
+
+    /* --- SVG ANIMATION FIXES --- */
+    .rotating-ring {
+      transform-origin: 150px 150px;
+      animation: spinRing 30s linear infinite;
+    }
+
+    .animated-prism {
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    .sparkle {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sparkleAnim 2s ease-in-out infinite alternate;
+    }
+
+    .sparkle-delay {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sparkleAnim 2.5s ease-in-out infinite alternate 0.8s;
+    }
+
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.85; filter: drop-shadow(0 0 2px rgba(45,179,157,0.3)); }
+      100% { opacity: 1; filter: drop-shadow(0 0 12px rgba(45,179,157,0.9)); }
+    }
+
+    @keyframes sparkleAnim {
+      0% { opacity: 0.2; transform: scale(0.6); }
+      100% { opacity: 1; transform: scale(1.3); }
     }
 
     /* --- SPECIALTIES BANNER --- */
@@ -151,7 +158,7 @@
       color: var(--accent-copper);
     }
 
-    /* --- CARDS --- */
+    /* --- CARDS & ICONS --- */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -185,9 +192,11 @@
       outline: none;
     }
 
-    .card-icon {
-      font-size: 2.4rem;
-      margin-bottom: 0.8rem;
+    .card-icon-svg {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 1rem;
+      display: block;
     }
 
     .card h3 {
@@ -221,6 +230,76 @@
       border-radius: 6px;
       background: rgba(224, 122, 72, 0.15);
       color: var(--accent-copper);
+    }
+
+    /* --- ARTICLES SECTION --- */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .article-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(224, 122, 72, 0.6);
+    }
+
+    .article-image-container {
+      width: 100%;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .article-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .article-card:hover .article-image {
+      transform: scale(1.06);
+    }
+
+    .article-content {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--accent-copper);
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .article-title {
+      font-size: 1.15rem;
+      color: var(--text-bright);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .article-excerpt {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.2rem;
+      flex-grow: 1;
     }
 
     /* --- POPUP MODAL --- */
@@ -321,64 +400,6 @@
       background: #121620;
     }
 
-    /* --- ARTICLES SECTION --- */
-    .article-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-    }
-
-    .article-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .article-image-container {
-      width: 100%;
-      height: 170px;
-      overflow: hidden;
-    }
-
-    .article-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .article-content {
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .article-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      color: var(--accent-copper);
-      margin-bottom: 0.6rem;
-      font-weight: 600;
-    }
-
-    .article-title {
-      font-size: 1.15rem;
-      color: var(--text-bright);
-      margin-bottom: 0.6rem;
-      line-height: 1.3;
-    }
-
-    .article-excerpt {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      margin-bottom: 1.2rem;
-      flex-grow: 1;
-    }
-
     /* --- CTA & BUTTONS --- */
     .cta-box {
       background: linear-gradient(135deg, #1b2433, #0f172a);
@@ -409,11 +430,10 @@
     /* --- FOOTER --- */
     footer {
       text-align: center;
-      padding: 2rem 1rem 3.5rem; /* Extra padding bottom to clear the audio button */
+      padding: 2rem 1rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       color: var(--text-muted);
       font-size: 0.85rem;
-      margin-bottom: 0 !important;
     }
 
     footer a {
@@ -424,7 +444,7 @@
 </head>
 <body>
 
-  <!-- HERO SECTION WITH EMBEDDED FILIGREE LOGO -->
+  <!-- HERO SECTION WITH FIXED ANIMATED FILIGREE LOGO -->
   <header>
     <div class="badge">Creative Workshops & Restoration</div>
 
@@ -451,13 +471,16 @@
           </linearGradient>
 
           <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feGaussianBlur stdDeviation="2" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
 
+        <!-- Outer Frame Ring -->
         <circle cx="150" cy="150" r="140" fill="url(#bgGrad)" stroke="url(#copperGrad)" stroke-width="3.5" />
-        <circle cx="150" cy="150" r="131" fill="none" stroke="rgba(224, 122, 72, 0.3)" stroke-width="1" stroke-dasharray="4,4" />
+        
+        <!-- Rotating Dashed Filigree Accent -->
+        <circle class="rotating-ring" cx="150" cy="150" r="131" fill="none" stroke="rgba(224, 122, 72, 0.35)" stroke-width="1.2" stroke-dasharray="6,8" />
 
         <!-- FILIGREE CORNER SCROLLS -->
         <g stroke="url(#copperGrad)" fill="none" stroke-width="1.2" stroke-linecap="round" opacity="0.85">
@@ -467,11 +490,12 @@
           <path d="M 225,180 C 240,195 225,210 210,205 C 200,202 202,190 212,192 C 222,195 218,205 208,202" />
         </g>
 
-        <!-- FILIGREE SUNCATCHER CENTER -->
+        <!-- CENTER SUNCATCHER FILIGREE & PRISM -->
         <g transform="translate(150, 138)">
           <line x1="0" y1="-56" x2="0" y2="-32" stroke="url(#copperGrad)" stroke-width="1.8" stroke-dasharray="2,2" />
           <circle cx="0" cy="-32" r="3.5" fill="none" stroke="url(#copperGrad)" stroke-width="1.8" />
 
+          <!-- Filigree Petals -->
           <g stroke="url(#copperGrad)" fill="none" stroke-width="1.6" stroke-linecap="round">
             <path d="M 0,-28 C -22,-28 -36,-12 -36,10 C -36,28 -18,40 0,52 C 18,40 36,28 36,10 C 36,-12 22,-28 0,-28 Z" />
             <path d="M 0,-20 C -12,-20 -24,-10 -20,2 C -17,11 -8,8 -12,2 C -15,-3 -8,-12 0,-10" stroke-width="1.2" />
@@ -480,7 +504,8 @@
             <path d="M 22,12 C 28,20 15,28 5,22 C -2,18 4,10 10,14" stroke-width="1.2" />
           </g>
 
-          <g filter="url(#glow)">
+          <!-- Glowing Faceted Prism -->
+          <g class="animated-prism">
             <polygon points="0,-8 -14,10 0,36 14,10" fill="url(#prismGrad)" opacity="0.85" stroke="url(#copperGrad)" stroke-width="1.2" />
             <line x1="0" y1="-8" x2="0" y2="36" stroke="#ffffff" stroke-width="1" opacity="0.8" />
             <line x1="-14" y1="10" x2="14" y2="10" stroke="#ffffff" stroke-width="0.8" opacity="0.6" />
@@ -488,6 +513,7 @@
             <line x1="14" y1="10" x2="0" y2="18" stroke="#ffffff" stroke-width="0.8" opacity="0.7" />
           </g>
 
+          <!-- Hanging Crystal Beads -->
           <line x1="-20" y1="30" x2="-26" y2="44" stroke="url(#copperGrad)" stroke-width="1.2" />
           <circle cx="-26" cy="48" r="3.5" fill="url(#prismGrad)" stroke="url(#copperGrad)" stroke-width="1" />
 
@@ -497,10 +523,11 @@
           <line x1="0" y1="52" x2="0" y2="62" stroke="url(#copperGrad)" stroke-width="1.5" />
           <path d="M 0,62 C -4,66 -5,72 0,76 C 5,72 4,66 0,62 Z" fill="url(#prismGrad)" stroke="url(#copperGrad)" stroke-width="1" filter="url(#glow)" />
 
-          <path d="M 32,-18 Q 32,-12 38,-12 Q 32,-12 32,-6 Q 32,-12 26,-12 Q 32,-12 32,-18 Z" fill="#ffffff" filter="url(#glow)" />
-          <path d="M -38,22 Q -38,27 -33,27 Q -38,27 -38,32 Q -38,27 -43,27 Q -38,27 -38,22 Z" fill="url(#copperGrad)" />
-          <circle cx="-12" cy="-18" r="1.5" fill="#ffffff" opacity="0.9" filter="url(#glow)" />
-          <circle cx="14" cy="28" r="1.5" fill="#ffffff" opacity="0.9" filter="url(#glow)" />
+          <!-- ANIMATED SPARKLES -->
+          <path class="sparkle" d="M 32,-18 Q 32,-12 38,-12 Q 32,-12 32,-6 Q 32,-12 26,-12 Q 32,-12 32,-18 Z" fill="#ffffff" filter="url(#glow)" />
+          <path class="sparkle-delay" d="M -38,22 Q -38,27 -33,27 Q -38,27 -38,32 Q -38,27 -43,27 Q -38,27 -38,22 Z" fill="url(#copperGrad)" />
+          <circle class="sparkle" cx="-12" cy="-18" r="2" fill="#ffffff" opacity="0.9" filter="url(#glow)" />
+          <circle class="sparkle-delay" cx="14" cy="28" r="1.8" fill="#5be2d1" opacity="0.9" filter="url(#glow)" />
         </g>
 
         <!-- CIRCULAR TEXT -->
@@ -533,7 +560,16 @@
       <!-- Class 1: Miniature Making -->
       <div class="card card-featured" tabindex="0" role="button" onclick="openModal('mini-class')">
         <div>
-          <div class="card-icon">🎓</div>
+          <svg class="card-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="44" width="44" height="8" rx="2" fill="#2db39d" opacity="0.3" stroke="#2db39d" stroke-width="2"/>
+            <line x1="18" y1="44" x2="18" y2="48" stroke="#2db39d" stroke-width="2"/>
+            <line x1="26" y1="44" x2="26" y2="50" stroke="#2db39d" stroke-width="2"/>
+            <line x1="34" y1="44" x2="34" y2="48" stroke="#2db39d" stroke-width="2"/>
+            <line x1="42" y1="44" x2="42" y2="50" stroke="#2db39d" stroke-width="2"/>
+            <path d="M14 36 L38 12 L46 20 L22 44 Z" fill="#e07a48" opacity="0.8"/>
+            <path d="M38 12 L48 2 L54 8 L46 20 Z" fill="#ffffff" opacity="0.9"/>
+            <path d="M14 36 L10 44 L18 44 Z" fill="#b85829"/>
+          </svg>
           <h3>Miniature Making Classes</h3>
           <p>Group workshops teaching basic miniature building either onsite or in a venue locally. Private hire available.</p>
         </div>
@@ -546,7 +582,12 @@
       <!-- Class 2: Zen Doodle -->
       <div class="card card-featured" tabindex="0" role="button" onclick="openModal('zen-doodle')">
         <div>
-          <div class="card-icon">🌀</div>
+          <svg class="card-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8 C18 8 10 20 22 32 C34 44 24 56 32 56 C40 56 50 44 38 32 C26 20 46 8 32 8 Z" stroke="#e07a48" stroke-width="2.5" fill="none"/>
+            <circle cx="32" cy="32" r="6" fill="#2db39d" opacity="0.6"/>
+            <path d="M48 10 L56 2 L62 8 L54 16 Z" fill="#ffffff"/>
+            <path d="M48 10 L28 30" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
           <h3>Zen Doodle Classes</h3>
           <p>Relaxing ink illustrations and structured patterned art. A variety of ideas.</p>
         </div>
@@ -559,7 +600,12 @@
       <!-- Class 3: Wire Wrapping -->
       <div class="card card-featured" tabindex="0" role="button" onclick="openModal('wire-wrap')">
         <div>
-          <div class="card-icon">💎</div>
+          <svg class="card-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="32,10 48,26 32,54 16,26" fill="#2db39d" opacity="0.3" stroke="#2db39d" stroke-width="2"/>
+            <path d="M12 24 C 20 18, 44 34, 52 28" stroke="#e07a48" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M10 34 C 22 28, 42 44, 54 36" stroke="#e07a48" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <circle cx="32" cy="10" r="3" fill="#e07a48"/>
+          </svg>
           <h3>Wire Wrapping Classes</h3>
           <p>Learn basics of copper wiring used for suncatchers and crystal wraps.</p>
         </div>
@@ -595,7 +641,17 @@
       <!-- Service 1: Model Trains -->
       <div class="card" tabindex="0" role="button" onclick="openModal('model-trains')">
         <div>
-          <div class="card-icon">🚂</div>
+          <svg class="card-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 48 L56 48" stroke="#94a3b8" stroke-width="3"/>
+            <line x1="16" y1="48" x2="16" y2="54" stroke="#94a3b8" stroke-width="3"/>
+            <line x1="32" y1="48" x2="32" y2="54" stroke="#94a3b8" stroke-width="3"/>
+            <line x1="48" y1="48" x2="48" y2="54" stroke="#94a3b8" stroke-width="3"/>
+            <rect x="12" y="24" width="32" height="20" rx="2" fill="#2db39d" opacity="0.8"/>
+            <rect x="36" y="16" width="16" height="28" rx="2" fill="#e07a48"/>
+            <circle cx="20" cy="44" r="5" fill="#ffffff"/>
+            <circle cx="34" cy="44" r="5" fill="#ffffff"/>
+            <rect x="16" y="14" width="6" height="10" fill="#94a3b8"/>
+          </svg>
           <h3>Model Train Displays</h3>
           <p>Specialized design and creation of scale train layouts. From terrain crafting and ballast to building models and lighting.</p>
         </div>
@@ -608,7 +664,14 @@
       <!-- Service 2: Dollhouse Restoration -->
       <div class="card" tabindex="0" role="button" onclick="openModal('dollhouse')">
         <div>
-          <div class="card-icon">🏠</div>
+          <svg class="card-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8 L8 28 L14 28 L14 52 L50 52 L50 28 L56 28 Z" fill="#161c26" stroke="#e07a48" stroke-width="2.5"/>
+            <rect x="22" y="34" width="8" height="8" stroke="#2db39d" stroke-width="2" fill="none"/>
+            <rect x="34" y="34" width="8" height="8" stroke="#2db39d" stroke-width="2" fill="none"/>
+            <rect x="27" y="44" width="10" height="8" fill="#e07a48"/>
+            <path d="M42 12 L54 24 L48 30 L36 18 Z" fill="#ffffff"/>
+            <path d="M54 24 L58 28 L52 34 L48 30 Z" fill="#e07a48"/>
+          </svg>
           <h3>Dollhouse Restoration</h3>
           <p>Expert structural repairs, authentic period wallpapering, miniature flooring, electrification, and touch-ups.</p>
         </div>
@@ -627,7 +690,8 @@
 
     <div class="article-grid">
 
-      <article class="article-card">
+      <!-- Article 1 -->
+      <article class="article-card" onclick="openArticle('dollhouse-article')">
         <div class="article-image-container">
           <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="Restoring a Victorian Dollhouse" class="article-image">
         </div>
@@ -638,10 +702,12 @@
           </div>
           <h3 class="article-title">Restoring Vintage Dollhouses: Preserving Wood & Original Wallpaper</h3>
           <p class="article-excerpt">Discover step-by-step techniques to repair aging mini structures without damaging vintage wood or delicate wall covers.</p>
+          <div class="click-prompt">Read Full Guide &rarr;</div>
         </div>
       </article>
 
-      <article class="article-card">
+      <!-- Article 2 -->
+      <article class="article-card" onclick="openArticle('train-article')">
         <div class="article-image-container">
           <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80" alt="Model Train Layout Scenery" class="article-image">
         </div>
@@ -652,10 +718,12 @@
           </div>
           <h3 class="article-title">Crafting Realistic Ballast & Rock Faces for Scale Layouts</h3>
           <p class="article-excerpt">Learn how to blend static grass, plaster rock castings, and custom weathering washes for hyper-realistic train displays.</p>
+          <div class="click-prompt">Read Full Guide &rarr;</div>
         </div>
       </article>
 
-      <article class="article-card">
+      <!-- Article 3 -->
+      <article class="article-card" onclick="openArticle('wire-article')">
         <div class="article-image-container">
           <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Wire Wrapping Technique" class="article-image">
         </div>
@@ -666,6 +734,7 @@
           </div>
           <h3 class="article-title">Essential Wire Gauges for Intricate Cabochon Wrapping</h3>
           <p class="article-excerpt">A breakdown of copper vs. sterling silver wire hardness, square wire techniques, and weaving tools for beginners.</p>
+          <div class="click-prompt">Read Full Guide &rarr;</div>
         </div>
       </article>
 
@@ -686,21 +755,15 @@
       <h3 class="modal-title" id="modalTitle">Category Title</h3>
       <p class="modal-description" id="modalDesc">Category Description</p>
       
-      <h4 style="color: var(--accent-copper); margin-bottom: 0.8rem; font-size: 1rem;">Sample Work & Student Projects</h4>
-      <div class="sample-grid" id="modalSamples">
-        <!-- Dynamic Content -->
+      <div id="modalBody">
+        <!-- Content inserted dynamically -->
       </div>
 
-      <div style="text-align: center;">
+      <div style="text-align: center; margin-top: 1.5rem;">
         <a href="mailto:hello@constructivegirl.com" class="btn">Inquire or Sign Up</a>
       </div>
     </div>
   </div>
-
-  <!-- MUSIC TOGGLE BUTTON (FLOATING AT BOTTOM RIGHT) -->
-  <button class="audio-toggle-btn" id="audioToggleBtn" onclick="toggleZenAudio()" aria-label="Toggle Ambient Audio">
-    <span id="audioIcon">🎵</span> <span id="audioText">Ambient Sound</span>
-  </button>
 
   <!-- FOOTER -->
   <footer>
@@ -709,73 +772,7 @@
   </footer>
 
   <script>
-    /* --- BROWSER WEB AUDIO AMBIENT GENERATOR --- */
-    let audioCtx = null;
-    let isPlaying = false;
-    let synthTimer = null;
-
-    function toggleZenAudio() {
-      const audioIcon = document.getElementById('audioIcon');
-      const audioText = document.getElementById('audioText');
-
-      if (!isPlaying) {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        startZenSynth();
-        isPlaying = true;
-        audioIcon.innerText = '🔊';
-        audioText.innerText = 'Pause Ambient';
-      } else {
-        stopZenSynth();
-        isPlaying = false;
-        audioIcon.innerText = '🎵';
-        audioText.innerText = 'Ambient Sound';
-      }
-    }
-
-    function playTone(freq, duration = 4.0) {
-      if (!audioCtx || audioCtx.state !== 'running') return;
-
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 1.2);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + duration);
-    }
-
-    function startZenSynth() {
-      const scale = [174.61, 220.00, 261.63, 329.63, 392.00, 440.00, 523.25];
-
-      playTone(scale[0], 6);
-      playTone(scale[2], 5);
-
-      synthTimer = setInterval(() => {
-        const freq = scale[Math.floor(Math.random() * scale.length)];
-        playTone(freq, 4 + Math.random() * 3);
-      }, 2400);
-    }
-
-    function stopZenSynth() {
-      if (synthTimer) clearInterval(synthTimer);
-      if (audioCtx) audioCtx.suspend();
-    }
-
-    /* --- MODAL CONTROLLER --- */
+    /* --- DATA & MODAL CONTROLLER --- */
     const sampleData = {
       'mini-class': {
         title: '🎓 Miniature Making Classes',
@@ -824,6 +821,81 @@
       }
     };
 
+    const articleData = {
+      'dollhouse-article': {
+        title: 'Restoring Vintage Dollhouses: Preserving Wood & Original Wallpaper',
+        desc: 'Guide & Case Study • 5 Min Read',
+        content: `
+          <p style="color: var(--text-bright); font-size:1rem; margin-bottom:1rem;">When restoring vintage or heirloom dollhouses, preservation takes priority over total replacement. Here are essential steps for treating original wood frames and printed wallpaper without causing degradation:</p>
+          
+          <h4 style="color: var(--accent-copper); margin: 1rem 0 0.4rem;">1. Cleaning Vintage Wallpaper</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Avoid water-based cleaners! Use dry vulcanized rubber sponges (soot sponges) to gently lift grime. For stubborn stains, archival-grade document eraser powders work without removing vintage ink pigments.</p>
+
+          <h4 style="color: var(--accent-copper); margin: 1rem 0 0.4rem;">2. Stabilizing Aging Wood</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Lauan or plywood from earlier decades often dries out and splinters. We use low-viscosity archival resin to fill micro-fissures before applying a light coat of natural beeswax to protect the wood grain.</p>
+          
+          <div class="sample-grid" style="margin-top: 1.2rem;">
+            <div class="sample-item">
+              <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80" alt="Restoration Step 1">
+              <div class="sample-caption">Paper Clean Test</div>
+            </div>
+            <div class="sample-item">
+              <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=500&q=80" alt="Restoration Step 2">
+              <div class="sample-caption">Wood Frame Sealing</div>
+            </div>
+          </div>
+        `
+      },
+      'train-article': {
+        title: 'Crafting Realistic Ballast & Rock Faces for Scale Layouts',
+        desc: 'Terrain Technique Guide • 7 Min Read',
+        content: `
+          <p style="color: var(--text-bright); font-size:1rem; margin-bottom:1rem;">Creating believable miniature terrain for HO, N, or O scale model railways relies on layered texturing and correct lighting highlights.</p>
+          
+          <h4 style="color: var(--accent-teal); margin: 1rem 0 0.4rem;">1. Track Ballasting Technique</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Spread real crushed stone ballast evenly, then spray with a mix of 70% isopropyl alcohol and water before applying 50/50 matte mod podge and water. The alcohol breaks surface tension so glue flows smoothly without clumping.</p>
+
+          <h4 style="color: var(--accent-teal); margin: 1rem 0 0.4rem;">2. Hydrocal Rock Castings</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Cast rocks in latex molds using Hydrocal plaster, install while still damp, and blend with sculptamold. Paint using "leopard spotting" washes of india ink and acrylic earth tones.</p>
+          
+          <div class="sample-grid" style="margin-top: 1.2rem;">
+            <div class="sample-item">
+              <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=500&q=80" alt="Ballast Work">
+              <div class="sample-caption">Scale Track Layout</div>
+            </div>
+            <div class="sample-item">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80" alt="Rock Weathering">
+              <div class="sample-caption">Finished Scenery</div>
+            </div>
+          </div>
+        `
+      },
+      'wire-article': {
+        title: 'Essential Wire Gauges for Intricate Cabochon Wrapping',
+        desc: 'Jewelry & Wirecraft • 4 Min Read',
+        content: `
+          <p style="color: var(--text-bright); font-size:1rem; margin-bottom:1rem;">Selecting the right wire temper and gauge is key to wrapping stones tightly without damaging raw crystals or hurting your hands.</p>
+          
+          <h4 style="color: var(--accent-rose); margin: 1rem 0 0.4rem;">1. Frame Wires vs. Weaving Wires</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Use 20-gauge or 22-gauge square dead-soft copper wire for main structural frames. For delicate weave wraps around cabochons, use 28-gauge or 30-gauge round half-hard wire.</p>
+
+          <h4 style="color: var(--accent-rose); margin: 1rem 0 0.4rem;">2. Square Wire Advantage</h4>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Square wire sits flush against gemstones, providing significantly more surface area grip than round wire when constructing suncatcher hangers or stone pendants.</p>
+          
+          <div class="sample-grid" style="margin-top: 1.2rem;">
+            <div class="sample-item">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" alt="Wire Gauge Test">
+              <div class="sample-caption">Woven Frame Structure</div>
+            </div>
+            <div class="sample-item">
+              <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="Finished Pendant">
+              <div class="sample-caption">Wrapped Cabochon</div>
+            </div>
+          </div>
+        `
+      }
+    };
+
     function openModal(key) {
       const data = sampleData[key];
       if (!data) return;
@@ -831,17 +903,29 @@
       document.getElementById('modalTitle').innerText = data.title;
       document.getElementById('modalDesc').innerText = data.desc;
 
-      const samplesContainer = document.getElementById('modalSamples');
-      samplesContainer.innerHTML = '';
-
+      let html = '<h4 style="color: var(--accent-copper); margin-bottom: 0.8rem; font-size: 1rem;">Sample Work & Student Projects</h4><div class="sample-grid">';
       data.samples.forEach(s => {
-        samplesContainer.innerHTML += `
+        html += `
           <div class="sample-item">
             <img src="${s.img}" alt="${s.caption}">
             <div class="sample-caption">${s.caption}</div>
           </div>
         `;
       });
+      html += '</div>';
+
+      document.getElementById('modalBody').innerHTML = html;
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openArticle(key) {
+      const article = articleData[key];
+      if (!article) return;
+
+      document.getElementById('modalTitle').innerText = article.title;
+      document.getElementById('modalDesc').innerText = article.desc;
+      document.getElementById('modalBody').innerHTML = article.content;
 
       document.getElementById('modalOverlay').classList.add('active');
       document.body.style.overflow = 'hidden';
