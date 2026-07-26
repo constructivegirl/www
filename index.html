@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructive Girl | Miniature Classes, Restoration & Art</title>
+  <style>
+    /* --- CSS RESET & COLOR PALETTE --- */
+    :root {
+      --bg-main: #0b0f17;
+      --card-bg: #161c26;
+      --accent-copper: #e07a48;
+      --accent-teal: #2db39d;
+      --accent-rose: #e65c82;
+      --text-bright: #ffffff;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Fixed body height to eliminate Google Sites trailing whitespace */
+    html, body {
+      background-color: var(--bg-main);
+      color: var(--text-bright);
+      line-height: 1.5;
+      overflow-x: hidden;
+      height: auto !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* --- HERO SECTION (Tightened Padding) --- */
+    header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2.5rem 1rem 1.5rem;
+      background: radial-gradient(circle at center, #1e2838 0%, var(--bg-main) 85%);
+      position: relative;
+    }
+
+    .badge {
+      background: rgba(224, 122, 72, 0.12);
+      color: var(--accent-copper);
+      border: 1px solid rgba(224, 122, 72, 0.4);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    /* COPPER TEXT TITLE CONTAINER */
+    .brand-title-wrapper {
+      position: relative;
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+
+    .brand-title {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      
+      /* Metallic Copper Gradient Fill */
+      background: linear-gradient(135deg, #fce0cd 0%, #e07a48 35%, #b85829 70%, #f7b494 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      
+      /* 3D Wire / Embossed Effect */
+      filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.8));
+      text-transform: capitalize;
+    }
+
+    /* SUBTLE SPARKLE OVERLAYS */
+    .sparkle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      opacity: 0.6;
+      animation: gentleSparkle 3s ease-in-out infinite alternate;
+    }
+
+    .sparkle::before, .sparkle::after {
+      content: '';
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .sparkle::before { width: 100%; height: 2px; }
+    .sparkle::after { width: 2px; height: 100%; }
+
+    .sparkle-1 { top: 5%; left: 5%; animation-delay: 0s; }
+    .sparkle-2 { top: 75%; left: 45%; animation-delay: 1s; }
+    .sparkle-3 { top: 10%; right: 5%; animation-delay: 2s; }
+
+    @keyframes gentleSparkle {
+      0% { transform: scale(0.4) rotate(0deg); opacity: 0.2; }
+      50% { transform: scale(1.1) rotate(45deg); opacity: 0.8; filter: drop-shadow(0 0 4px #fff); }
+      100% { transform: scale(0.4) rotate(90deg); opacity: 0.2; }
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-top: 0.8rem;
+    }
+
+    /* --- SPECIALTIES BANNER --- */
+    .specialty-banner {
+      background: linear-gradient(90deg, rgba(224, 122, 72, 0.08), rgba(45, 179, 157, 0.08));
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.8rem 1rem;
+      text-align: center;
+    }
+
+    .specialty-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .specialty-item h3 {
+      color: var(--accent-copper);
+      font-size: 1.15rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .specialty-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* --- LAYOUT CONTAINER --- */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title span {
+      color: var(--accent-copper);
+    }
+
+    /* --- CARDS --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .card-featured {
+      border-color: rgba(224, 122, 72, 0.3);
+      background: linear-gradient(180deg, rgba(224, 122, 72, 0.06) 0%, var(--card-bg) 100%);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(224, 122, 72, 0.8);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-icon {
+      font-size: 2.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-bright);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .click-prompt {
+      color: var(--accent-copper);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .card-tag {
+      align-self: flex-start;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+      background: rgba(224, 122, 72, 0.15);
+      color: var(--accent-copper);
+    }
+
+    /* --- POPUP MODAL --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: var(--card-bg);
+      border: 1px solid var(--accent-copper);
+      border-radius: 20px;
+      max-width: 750px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: var(--accent-rose);
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-description {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .sample-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sample-item {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sample-item img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sample-caption {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      background: #121620;
+    }
+
+    /* --- ARTICLES SECTION --- */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .article-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-image-container {
+      width: 100%;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .article-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .article-content {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--accent-copper);
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .article-title {
+      font-size: 1.15rem;
+      color: var(--text-bright);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .article-excerpt {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.2rem;
+      flex-grow: 1;
+    }
+
+    /* --- CTA & BUTTONS --- */
+    .cta-box {
+      background: linear-gradient(135deg, #1b2433, #0f172a);
+      border: 1px solid var(--accent-teal);
+      border-radius: 20px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--accent-copper);
+      color: #ffffff;
+      font-weight: 800;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(224, 122, 72, 0.3);
+    }
+
+    .btn:hover {
+      background: #f09262;
+      transform: scale(1.03);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 0 !important;
+    }
+
+    footer a {
+      color: var(--accent-copper);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header>
+    <div class="badge">Creative Workshops & Restoration</div>
+
+    <!-- CLEAN, ULTRA-LEGIBLE COPPER LOGO -->
+    <div class="brand-title-wrapper">
+      <h1 class="brand-title">Constructive Girl</h1>
+      <div class="sparkle sparkle-1"></div>
+      <div class="sparkle sparkle-2"></div>
+      <div class="sparkle sparkle-3"></div>
+    </div>
+
+    <p class="hero-subtitle">Hands-On Creative Classes in Miniature Making, Wire Wrapping, and Zen Doodle—Plus Professional Restoration Services.</p>
+  </header>
+
+  <!-- FEATURED CLASSES SECTION -->
+  <section class="container" style="padding-top: 2rem;">
+    <h2 class="section-title">Featured <span>Classes & Workshops</span></h2>
+    <p style="text-align: center; color: var(--text-muted); margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.95rem;">Click any category below to view sample projects and details!</p>
+
+    <div class="grid">
+      
+      <!-- Class 1: Miniature Making -->
+      <div class="card card-featured" onclick="openModal('mini-class')">
+        <div>
+          <div class="card-icon">🎓</div>
+          <h3>Miniature Making Classes</h3>
+          <p>Hands-on workshops teaching scale building, scratch crafting, realistic weathering, and mini furniture construction.</p>
+        </div>
+        <div>
+          <div class="card-tag">Class</div>
+          <div class="click-prompt">View Samples & Details &rarr;</div>
+        </div>
+      </div>
+
+      <!-- Class 2: Zen Doodle -->
+      <div class="card card-featured" onclick="openModal('zen-doodle')">
+        <div>
+          <div class="card-icon">🌀</div>
+          <h3>Zen Doodle Classes</h3>
+          <p>Relaxing, meditative ink illustrations and structured pattern art. Guided mindful sketching for all skill levels.</p>
+        </div>
+        <div>
+          <div class="card-tag">Class</div>
+          <div class="click-prompt">View Samples & Details &rarr;</div>
+        </div>
+      </div>
+
+      <!-- Class 3: Wire Wrapping -->
+      <div class="card card-featured" onclick="openModal('wire-wrap')">
+        <div>
+          <div class="card-icon">💎</div>
+          <h3>Wire Wrapping Classes</h3>
+          <p>Learn to craft hand-woven wire jewelry, crystal wraps, and decorative wire sculptures with copper and silver.</p>
+        </div>
+        <div>
+          <div class="card-tag">Class</div>
+          <div class="click-prompt">View Samples & Details &rarr;</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SPECIALTIES BANNER -->
+  <section class="specialty-banner">
+    <div class="specialty-grid">
+      <div class="specialty-item">
+        <h3>🚂 Model Train Displays</h3>
+        <p>Custom scenery, realistic trackwork, and layout design.</p>
+      </div>
+      <div class="specialty-item">
+        <h3>🏠 Dollhouse Restoration</h3>
+        <p>Bringing vintage, heirloom mini structures back to life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="container">
+    <h2 class="section-title">Specialized <span>Restoration & Displays</span></h2>
+
+    <div class="grid">
+      
+      <!-- Service 1: Model Trains -->
+      <div class="card" onclick="openModal('model-trains')">
+        <div>
+          <div class="card-icon">🚂</div>
+          <h3>Model Train Displays</h3>
+          <p>Specialized design and creation of scale train layouts. From terrain crafting and ballast to building models and lighting.</p>
+        </div>
+        <div>
+          <div class="card-tag" style="background: rgba(45, 179, 157, 0.15); color: var(--accent-teal);">Specialty Service</div>
+          <div class="click-prompt" style="color: var(--accent-teal);">View Samples & Details &rarr;</div>
+        </div>
+      </div>
+
+      <!-- Service 2: Dollhouse Restoration -->
+      <div class="card" onclick="openModal('dollhouse')">
+        <div>
+          <div class="card-icon">🏠</div>
+          <h3>Dollhouse Restoration</h3>
+          <p>Expert structural repairs, authentic period wallpapering, miniature flooring, electrification, and touch-ups.</p>
+        </div>
+        <div>
+          <div class="card-tag" style="background: rgba(45, 179, 157, 0.15); color: var(--accent-teal);">Specialty Service</div>
+          <div class="click-prompt" style="color: var(--accent-teal);">View Samples & Details &rarr;</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARTICLES SECTION -->
+  <main class="container" style="padding-top: 0;">
+    <h2 class="section-title">Latest <span>Articles & Guides</span></h2>
+
+    <div class="article-grid">
+
+      <article class="article-card">
+        <div class="article-image-container">
+          <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="Restoring a Victorian Dollhouse" class="article-image">
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span>DOLLHOUSE RESTORATION</span>
+            <span>5 MIN READ</span>
+          </div>
+          <h3 class="article-title">Restoring Vintage Dollhouses: Preserving Wood & Original Wallpaper</h3>
+          <p class="article-excerpt">Discover step-by-step techniques to repair aging mini structures without damaging vintage wood or delicate wall covers.</p>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-image-container">
+          <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80" alt="Model Train Layout Scenery" class="article-image">
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span>MODEL TRAINS</span>
+            <span>7 MIN READ</span>
+          </div>
+          <h3 class="article-title">Crafting Realistic Ballast & Rock Faces for Scale Layouts</h3>
+          <p class="article-excerpt">Learn how to blend static grass, plaster rock castings, and custom weathering washes for hyper-realistic train displays.</p>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-image-container">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Wire Wrapping Technique" class="article-image">
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span>WIRE WRAPPING</span>
+            <span>4 MIN READ</span>
+          </div>
+          <h3 class="article-title">Essential Wire Gauges for Intricate Cabochon Wrapping</h3>
+          <p class="article-excerpt">A breakdown of copper vs. sterling silver wire hardness, square wire techniques, and weaving tools for beginners.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CALL TO ACTION -->
+    <div class="cta-box">
+      <h3>Ready to Register for a Class or Request Restoration?</h3>
+      <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.95rem;">Reserve your seat in an upcoming workshop or get a custom quote for train displays and dollhouse restorations.</p>
+      <a href="mailto:hello@constructivegirl.com" class="btn" style="margin-top: 1.2rem;">Enroll / Contact Us</a>
+    </div>
+  </main>
+
+  <!-- POPUP MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOutsideClick(event)">
+    <div class="modal-container">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h3 class="modal-title" id="modalTitle">Category Title</h3>
+      <p class="modal-description" id="modalDesc">Category Description</p>
+      
+      <h4 style="color: var(--accent-copper); margin-bottom: 0.8rem; font-size: 1rem;">Sample Work & Student Projects</h4>
+      <div class="sample-grid" id="modalSamples">
+        <!-- Dynamic Content -->
+      </div>
+
+      <div style="text-align: center;">
+        <a href="mailto:hello@constructivegirl.com" class="btn">Inquire or Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Constructive Girl. All rights reserved.</p>
+    <p>Visit <a href="https://constructivegirl.com">constructivegirl.com</a></p>
+  </footer>
+
+  <script>
+    const sampleData = {
+      'mini-class': {
+        title: '🎓 Miniature Making Classes',
+        desc: 'In these hands-on classes, students learn scale modeling techniques, including scratch-building miniature furniture, realistic painting, weathering, and diorama assembly.',
+        samples: [
+          { img: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80', caption: 'Scratch-Built Mini Room' },
+          { img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=500&q=80', caption: 'Weathering & Detail Painting' },
+          { img: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=500&q=80', caption: 'Scale Furniture Crafting' }
+        ]
+      },
+      'zen-doodle': {
+        title: '🌀 Zen Doodle Classes',
+        desc: 'Unwind and explore mindful sketching! Learn structured ink pattern techniques that combine meditation with artistic expression. Great for all experience levels.',
+        samples: [
+          { img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80', caption: 'Intricate Line Work' },
+          { img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=500&q=80', caption: 'Mindful Patterns' },
+          { img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=500&q=80', caption: 'Original Ink Prints' }
+        ]
+      },
+      'wire-wrap': {
+        title: '💎 Wire Wrapping Classes',
+        desc: 'Master the craft of wire weaving! Learn tool safety, wire gauges, bezel framing, and how to securely wrap gemstones and cabochons into wearable art.',
+        samples: [
+          { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80', caption: 'Woven Crystal Pendant' },
+          { img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80', caption: 'Silver & Stone Wrap' },
+          { img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80', caption: 'Decorative Wire Craft' }
+        ]
+      },
+      'model-trains': {
+        title: '🚂 Model Train Displays',
+        desc: 'Custom commission work for model railway layouts. We design and build realistic mountain scenery, tunnels, ballast tracks, scale buildings, and integrated lighting.',
+        samples: [
+          { img: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=500&q=80', caption: 'Mountain Scenery & Track' },
+          { img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=500&q=80', caption: 'Scale Station & Lighting' },
+          { img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80', caption: 'Realistic Terrain Blend' }
+        ]
+      },
+      'dollhouse': {
+        title: '🏠 Dollhouse Restoration',
+        desc: 'Preserve heirloom memories! We repair cracked wood frames, re-paper vintage interiors with period-accurate designs, rewire electrical fixtures, and fix delicate furniture.',
+        samples: [
+          { img: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80', caption: 'Victorian Restoration' },
+          { img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=500&q=80', caption: 'Interior Wallpaper & Trim' },
+          { img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&q=80', caption: 'Exterior Wood Repair' }
+        ]
+      }
+    };
+
+    function openModal(key) {
+      const data = sampleData[key];
+      if (!data) return;
+
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalDesc').innerText = data.desc;
+
+      const samplesContainer = document.getElementById('modalSamples');
+      samplesContainer.innerHTML = '';
+
+      data.samples.forEach(s => {
+        samplesContainer.innerHTML += `
+          <div class="sample-item">
+            <img src="${s.img}" alt="${s.caption}">
+            <div class="sample-caption">${s.caption}</div>
+          </div>
+        `;
+      });
+
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    function closeModalOnOutsideClick(event) {
+      if (event.target.id === 'modalOverlay') {
+        closeModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
