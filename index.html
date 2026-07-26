@@ -23,7 +23,6 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    /* Fixed body height to eliminate Google Sites trailing whitespace */
     html, body {
       background-color: var(--bg-main);
       color: var(--text-bright);
@@ -34,7 +33,7 @@
       margin-bottom: 0 !important;
     }
 
-    /* --- HERO SECTION (Tightened Padding) --- */
+    /* --- HERO SECTION --- */
     header {
       display: flex;
       flex-direction: column;
@@ -59,7 +58,6 @@
       text-transform: uppercase;
     }
 
-    /* COPPER TEXT TITLE CONTAINER */
     .brand-title-wrapper {
       position: relative;
       display: inline-block;
@@ -71,18 +69,13 @@
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 700;
       letter-spacing: 2px;
-      
-      /* Metallic Copper Gradient Fill */
       background: linear-gradient(135deg, #fce0cd 0%, #e07a48 35%, #b85829 70%, #f7b494 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      
-      /* 3D Wire / Embossed Effect */
       filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.8));
       text-transform: capitalize;
     }
 
-    /* SUBTLE SPARKLE OVERLAYS */
     .sparkle {
       position: absolute;
       width: 12px;
@@ -187,6 +180,7 @@
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
+      text-align: left;
     }
 
     .card-featured {
@@ -194,10 +188,11 @@
       background: linear-gradient(180deg, rgba(224, 122, 72, 0.06) 0%, var(--card-bg) 100%);
     }
 
-    .card:hover {
+    .card:hover, .card:focus {
       transform: translateY(-5px);
       border-color: rgba(224, 122, 72, 0.8);
       box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+      outline: none;
     }
 
     .card-icon {
@@ -443,7 +438,6 @@
   <header>
     <div class="badge">Creative Workshops & Restoration</div>
 
-    <!-- CLEAN, ULTRA-LEGIBLE COPPER LOGO -->
     <div class="brand-title-wrapper">
       <h1 class="brand-title">Constructive Girl</h1>
       <div class="sparkle sparkle-1"></div>
@@ -462,11 +456,11 @@
     <div class="grid">
       
       <!-- Class 1: Miniature Making -->
-      <div class="card card-featured" onclick="openModal('mini-class')">
+      <div class="card card-featured" tabindex="0" role="button" onclick="openModal('mini-class')">
         <div>
           <div class="card-icon">🎓</div>
           <h3>Miniature Making Classes</h3>
-          <p>Hands-on workshops teaching scale building, scratch crafting, realistic weathering, and mini furniture construction.</p>
+          <p>Group workshops teaching basic miniature building either onsite or in a venue locally. Private hire available.</p>
         </div>
         <div>
           <div class="card-tag">Class</div>
@@ -475,11 +469,11 @@
       </div>
 
       <!-- Class 2: Zen Doodle -->
-      <div class="card card-featured" onclick="openModal('zen-doodle')">
+      <div class="card card-featured" tabindex="0" role="button" onclick="openModal('zen-doodle')">
         <div>
           <div class="card-icon">🌀</div>
           <h3>Zen Doodle Classes</h3>
-          <p>Relaxing, meditative ink illustrations and structured pattern art. Guided mindful sketching for all skill levels.</p>
+          <p>Relaxing ink illustrations and structured patterned art. A variety of ideas.</p>
         </div>
         <div>
           <div class="card-tag">Class</div>
@@ -488,11 +482,11 @@
       </div>
 
       <!-- Class 3: Wire Wrapping -->
-      <div class="card card-featured" onclick="openModal('wire-wrap')">
+      <div class="card card-featured" tabindex="0" role="button" onclick="openModal('wire-wrap')">
         <div>
           <div class="card-icon">💎</div>
           <h3>Wire Wrapping Classes</h3>
-          <p>Learn to craft hand-woven wire jewelry, crystal wraps, and decorative wire sculptures with copper and silver.</p>
+          <p>Learn basics of copper wiring used for suncatchers and crystal wraps.</p>
         </div>
         <div>
           <div class="card-tag">Class</div>
@@ -524,7 +518,7 @@
     <div class="grid">
       
       <!-- Service 1: Model Trains -->
-      <div class="card" onclick="openModal('model-trains')">
+      <div class="card" tabindex="0" role="button" onclick="openModal('model-trains')">
         <div>
           <div class="card-icon">🚂</div>
           <h3>Model Train Displays</h3>
@@ -537,7 +531,7 @@
       </div>
 
       <!-- Service 2: Dollhouse Restoration -->
-      <div class="card" onclick="openModal('dollhouse')">
+      <div class="card" tabindex="0" role="button" onclick="openModal('dollhouse')">
         <div>
           <div class="card-icon">🏠</div>
           <h3>Dollhouse Restoration</h3>
@@ -611,9 +605,9 @@
   </main>
 
   <!-- POPUP MODAL -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOutsideClick(event)">
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" onclick="closeModalOnOutsideClick(event)">
     <div class="modal-container">
-      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <button class="close-btn" aria-label="Close modal" onclick="closeModal()">&times;</button>
       <h3 class="modal-title" id="modalTitle">Category Title</h3>
       <p class="modal-description" id="modalDesc">Category Description</p>
       
@@ -638,7 +632,7 @@
     const sampleData = {
       'mini-class': {
         title: '🎓 Miniature Making Classes',
-        desc: 'In these hands-on classes, students learn scale modeling techniques, including scratch-building miniature furniture, realistic painting, weathering, and diorama assembly.',
+        desc: 'Group workshops teaching basic miniature building either onsite or in a venue locally. Private hire available.',
         samples: [
           { img: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80', caption: 'Scratch-Built Mini Room' },
           { img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=500&q=80', caption: 'Weathering & Detail Painting' },
@@ -647,7 +641,7 @@
       },
       'zen-doodle': {
         title: '🌀 Zen Doodle Classes',
-        desc: 'Unwind and explore mindful sketching! Learn structured ink pattern techniques that combine meditation with artistic expression. Great for all experience levels.',
+        desc: 'Relaxing ink illustrations and structured patterned art. A variety of ideas.',
         samples: [
           { img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80', caption: 'Intricate Line Work' },
           { img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=500&q=80', caption: 'Mindful Patterns' },
@@ -656,7 +650,7 @@
       },
       'wire-wrap': {
         title: '💎 Wire Wrapping Classes',
-        desc: 'Master the craft of wire weaving! Learn tool safety, wire gauges, bezel framing, and how to securely wrap gemstones and cabochons into wearable art.',
+        desc: 'Learn basics of copper wiring used for suncatchers and crystal wraps.',
         samples: [
           { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80', caption: 'Woven Crystal Pendant' },
           { img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80', caption: 'Silver & Stone Wrap' },
@@ -703,10 +697,12 @@
       });
 
       document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
       document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
     }
 
     function closeModalOnOutsideClick(event) {
@@ -714,6 +710,12 @@
         closeModal();
       }
     }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
   </script>
 
 </body>
