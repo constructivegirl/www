@@ -33,6 +33,34 @@
       margin-bottom: 0 !important;
     }
 
+    /* --- AUDIO TOGGLE BUTTON --- */
+    .audio-toggle-btn {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 999;
+      background: rgba(22, 28, 38, 0.9);
+      border: 1px solid var(--accent-copper);
+      color: var(--text-bright);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+
+    .audio-toggle-btn:hover {
+      background: var(--accent-copper);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
     /* --- HERO SECTION --- */
     header {
       display: flex;
@@ -396,6 +424,11 @@
 </head>
 <body>
 
+  <!-- MUSIC TOGGLE BUTTON -->
+  <button class="audio-toggle-btn" id="audioToggleBtn" onclick="toggleZenAudio()" aria-label="Toggle Zen Music">
+    <span id="audioIcon">🎵</span> <span id="audioText">Play Ambient Sound</span>
+  </button>
+
   <!-- HERO SECTION WITH EMBEDDED FILIGREE LOGO -->
   <header>
     <div class="badge">Creative Workshops & Restoration</div>
@@ -676,6 +709,79 @@
   </footer>
 
   <script>
+    /* --- BROWSER WEB AUDIO AMBIENT GENERATOR --- */
+    let audioCtx = null;
+    let isPlaying = false;
+    let synthTimer = null;
+
+    function toggleZenAudio() {
+      const audioIcon = document.getElementById('audioIcon');
+      const audioText = document.getElementById('audioText');
+
+      if (!isPlaying) {
+        // Initialize Web Audio API on user click
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        startZenSynth();
+        isPlaying = true;
+        audioIcon.innerText = '🔊';
+        audioText.innerText = 'Pause Ambient';
+      } else {
+        stopZenSynth();
+        isPlaying = false;
+        audioIcon.innerText = '🎵';
+        audioText.innerText = 'Play Ambient Sound';
+      }
+    }
+
+    // Creates warm, relaxing pentatonic singing-bowl tones
+    function playTone(freq, duration = 4.0) {
+      if (!audioCtx || audioCtx.state !== 'running') return;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      // Soft attack & slow fade-out
+      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 1.2);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function startZenSynth() {
+      // Relaxing pentatonic frequencies (Hz)
+      const scale = [174.61, 220.00, 261.63, 329.63, 392.00, 440.00, 523.25];
+
+      // Play initial harmony
+      playTone(scale[0], 6);
+      playTone(scale[2], 5);
+
+      // Loop tranquil notes randomly every 2-3 seconds
+      synthTimer = setInterval(() => {
+        const freq = scale[Math.floor(Math.random() * scale.length)];
+        playTone(freq, 4 + Math.random() * 3);
+      }, 2400);
+    }
+
+    function stopZenSynth() {
+      if (synthTimer) clearInterval(synthTimer);
+      if (audioCtx) audioCtx.suspend();
+    }
+
+    /* --- MODAL CONTROLLER --- */
     const sampleData = {
       'mini-class': {
         title: '🎓 Miniature Making Classes',
